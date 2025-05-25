@@ -25,18 +25,37 @@ function Header() {
     useEffect(() => {
         window.addEventListener('scroll', scrollHeader)
     }, [])
+
+    const [isToursOpen, setIsToursOpen] = useState(false);
+
+    const toggleTours = () => {
+        setIsToursOpen(!isToursOpen);
+    };
+
+    const [isDealsOpen, setIsDealsOpen] = useState(false);
+
+    const toggleDeals = () => {
+        setIsDealsOpen(!isDealsOpen);
+    };
+
+    const [isDestinationOpen, setIsDestinationOpen] = useState(false);
+
+    const toggleDestination = () => {
+        setIsDestinationOpen(!isDestinationOpen);
+    };
     return (
         <>
             <div className={header ? "fixed w-full z-10 kala bg-white" : "bg-[transparent]"}>
-                <header className='py-1   header bg-white z-10 '>
+                <header className='py-1   header bg-white z-50 '>
                     <div className="container  flex items-center justify-between mx-auto">
                         <div className='lg:flex sm:hidden gap-30 items-center '>
                             <Link href="/"> <img className='w-[150px]' src="https://media.thameltravel.com/themes/images/logo.svg" alt="" /></Link>
                             <ul className="flex  gap-10">
                                 <li className='flex gap-2 hover:text-[#FF8070] items-center'><Link href="/about">About</Link></li>
-                                <Link href="" className='relative transition-all '><li className='flex gap-2    hover:text-[#FF8070] items-center '>Tours <IoIosArrowDown className=' hover:rotate-180  cursor-pointer transition-all .3s' /></li>
-                                    {/* drop down */}
-                                    <div className="absolute w-[900px]  left-[-20px] hidden  top-17 gap-2  bg-[#d8d9d9] py-3  hover:flex flex-col  shadow-md transition-all z-10">
+                                <li className='flex gap-2    hover:text-[#FF8070] items-center ' onClick={toggleTours}>Tours <IoIosArrowDown className={`cursor-pointer  ${isToursOpen ? "rotate-180" : "rotate-0"}`} /></li>
+                                {/* drop down */}
+                                {isToursOpen && (
+                                    <div className="absolute w-[900px]  left-[20px]   top-20 gap-2  bg-[#d8d9d9] py-3  hover:flex flex-col  shadow-md transition-all z-10">
                                         <div className="grid grid-cols-3 gap-5 px-4 py-5">
                                             <div>
                                                 <Link href=""><h2 className='text-blue-800 font-bold text-[16px]'>Small Group Tours</h2></Link>
@@ -67,13 +86,15 @@ function Header() {
                                                 </ul>
                                             </div>
                                         </div>
-                                    </div>
-                                    {/* drop down end */}
+                                    </div>)}
 
-                                </Link>
-                                <Link href="/nepal-tour-offer/" className='relative transition-all '> <li className='flex hover:text-[#FF8070] gap-2 items-center '>Deals <IoIosArrowDown className=' hover:rotate-180  cursor-pointer transition-all .3s' /></li>
-                                    {/* dropdown */}
-                                    <div className="absolute right-0 left-[20%] top-20 w-[900px] hidden  gap-2  bg-[#F9FBFC] py-3  hover:flex flex-col  shadow-md transition-all z-10">
+                                {/* drop down end */}
+
+
+                                <li className='flex hover:text-[#FF8070] gap-2 items-center ' onClick={toggleDeals}>Deals <IoIosArrowDown className={`cursor-pointer  ${isDealsOpen ? "rotate-180" : "rotate-0"}`} /></li>
+                                {/* dropdown */}
+                                {isDealsOpen && (
+                                    <div className="absolute right-0 left-[20%] top-30 w-[900px]   gap-2  bg-[#F9FBFC] py-3  hover:flex flex-col  shadow-md transition-all z-10">
                                         <div className="grid grid-cols-3 gap-5 px-4 py-5">
                                             <div>
                                                 <Link href=""><h2 className='text-blue-800 font-bold text-[16px]'>EarlyBird Offers</h2></Link>
@@ -101,12 +122,13 @@ function Header() {
                                                 </ul>
                                             </div>
                                         </div>
-                                    </div>
-                                    {/* dropdown */}
-                                </Link>
-                                <Link href="/destination/" className='relative transition-all '><li className='flex gap-2 hover:text-[#FF8070] items-center '>Destinations <IoIosArrowDown className=' hover:rotate-180  cursor-pointer transition-all .3s' /></li>
-                                    {/* dropdown */}
-                                    <div className="absolute right-0 left-[30%] top-20 w-[900px]  hidden  gap-2  bg-[#F9FBFC] py-3  hover:flex flex-col  shadow-md transition-all z-10">
+                                    </div>)}
+                                {/* dropdown */}
+
+                                <li className='flex gap-2 hover:text-[#FF8070] items-center ' onClick={toggleDestination}>Destinations <IoIosArrowDown className={`cursor-pointer  ${isDestinationOpen ? "rotate-180" : "rotate-0"}`} /></li>
+                                {/* dropdown */}
+                                {isDestinationOpen && (
+                                    <div className="absolute right-0 left-[30%] top-30 w-[900px]    gap-2  bg-[#F9FBFC] py-3  hover:flex flex-col  shadow-md transition-all z-10">
                                         <div className="grid grid-cols-3 gap-5 px-4 py-5">
                                             <div>
                                                 <Link href=""><h2 className='text-blue-800 font-bold text-[16px]'>Nepal</h2></Link>
@@ -124,9 +146,9 @@ function Header() {
 
                                             </div>
                                         </div>
-                                    </div>
-                                    {/* dropdown */}
-                                </Link>
+                                    </div>)}
+                                {/* dropdown */}
+
                             </ul>
 
                         </div>
@@ -158,7 +180,7 @@ function Header() {
                                 }
 
                             </div>
-                            <div className='fixed top-[20%]  px-20 ka grid grid-rows-2 mr-[110%]  py-20 box-border z-[99] text-[20px] bg-[#25518B]' style={{ transform: mobilemenuopen && "translateY(0%)" }}>
+                            <div className='fixed top-[20%] border  px-20 ka grid grid-rows-2 ml-[-8%]  py-20 box-border z-[99] text-[20px] bg-[#25518B]' style={{ transform: mobilemenuopen && "translateY(0%)" }}>
 
                                 <ul className="grid grid-rows-1  gap-10">
                                     <li className='flex gap-2 hover:text-[#FF8070] items-center'><Link href="/about">About</Link></li>
@@ -294,8 +316,8 @@ function Header() {
 
 
             </div>
-           
-           
+
+
         </>
     )
 }

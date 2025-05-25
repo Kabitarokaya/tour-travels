@@ -1,11 +1,14 @@
+"use client"
 import Link from 'next/link';
-import React from 'react'
+import React, { useState } from 'react'
 import { IoTimeOutline } from "react-icons/io5";
 import { MdStarRate } from "react-icons/md";
 import { FaPlay } from "react-icons/fa6";
 import { GoSearch } from "react-icons/go";
 
 function page() {
+  const [showVideo, setShowVideo] = useState(false)
+
   return (
     <>
 
@@ -262,7 +265,7 @@ function page() {
           <h2 className='text-[30px]  font-bold uppercase'>Featured Trips</h2>
 
           <div className="grid lg:grid-cols-3 gap-8 sm:grid-cols-2 pb-6">
-          <Link href="/kathmandu-and-pokhara-family-tours">  <div className=' bg-white shadow pb-2 overflow-hidden'>
+            <Link href="/kathmandu-and-pokhara-family-tours">  <div className=' bg-white shadow pb-2 overflow-hidden'>
               <img src="https://media.thameltravel.com/uploads/package/hotel-annapurna-view-sarangkot.webp" className=' transition-transform duration-400 overflow-hidden hover:scale-110' alt="" />
               <div className='px-3'>
                 <h2 className='text-[20px] font-bold py-3 pt-4'>Kathmandu and Pokhara Luxury Tours</h2>
@@ -295,7 +298,7 @@ function page() {
         </div>
       </section>
       {/* trips end */}
-
+      {/* play start */}
 
       <section className='py-5 bg-[#eae8e8]'>
         <div className="container  mx-auto">
@@ -314,17 +317,44 @@ function page() {
             </div>
             <div className='h-[700px] relative  justify-end'>
               <img className='w-full h-[700px] object-cover rounded-[10px]' src="https://media.thameltravel.com/uploads/video/ta-2023.webp" alt="" />
-              <div className='absolute top-[45%] left-[50%]   '>
-                <Link href=""><div className=' bg-[#f94b1f] aa w-[50px] pt-0.5 h-[50px] ml-[17%] mt-[20%] rounded-full'>
-                  <FaPlay className='size-[20px] mt-3 ml-4  text-white' />
-                </div></Link>
 
-              </div>
-              <iframe width="1200" height="642" className='absolute top-[20%] right-[4%] hidden' src="https://www.youtube.com/embed/rTcZv14HhQ4" title="#NepalAwaits" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              {/* <Link href=""><div className=''>
+                  <FaPlay className=' text-white' />
+                </div></Link> */}
+              {!showVideo && (
+                <div className='absolute top-[45%] left-[50%] transform -translate-x-1/2 -translate-y-1/2'>
+                  <button
+                    onClick={() => setShowVideo(true)}
+                    className='bg-[#f94b1f] w-[50px] h-[50px] aa rounded-full flex items-center justify-center shadow-lg '
+                  >
+                    <FaPlay className='text-white size-[20px]  text-[20px]' />
+                  </button>
+                </div>
+              )}
+
+              {showVideo && (
+                <>
+                  {/* Overlay iframe */}
+                  <iframe width="1200" height="700" className={`absolute top-[20%] right-[4%] rounded-xl shadow-lg `}
+                    src="https://www.youtube.com/embed/rTcZv14HhQ4" title="#NepalAwaits" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+                  {/* Close Button */}
+                  <button
+                    onClick={() => setShowVideo(false)}
+                    className="absolute top-0 right-3 z-20 text-white bg-black bg-opacity-60 hover:bg-opacity-80 rounded-full p-2 text-lg"
+                    title="Close Video"
+                  >
+                    ✖
+                  </button>
+                </>
+              )}
+
+
             </div>
           </div>
         </div>
       </section>
+      {/* play end */}
       <section className='py-6 mb-4 bg-white'>
         <div className="container mx-auto">
           <h2 className='text-[30px] font-bold uppercase'>Recent Experience with Thamel Travels</h2>
