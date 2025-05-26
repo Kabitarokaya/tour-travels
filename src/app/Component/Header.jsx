@@ -55,7 +55,7 @@ function Header() {
                                 <li className='flex gap-2    hover:text-[#FF8070] items-center ' onClick={toggleTours}>Tours <IoIosArrowDown className={`cursor-pointer  ${isToursOpen ? "rotate-180" : "rotate-0"}`} /></li>
                                 {/* drop down */}
                                 {isToursOpen && (
-                                    <div className="absolute w-[900px]  left-[20px]   top-20 gap-2  bg-[#d8d9d9] py-3  hover:flex flex-col  shadow-md transition-all z-10">
+                                    <div className="absolute w-[900px]  left-[20px]   top-20 gap-2  bg-[#F9FBFC] py-3  hover:flex flex-col  shadow-md transition-all z-10">
                                         <div className="grid grid-cols-3 gap-5 px-4 py-5">
                                             <div>
                                                 <Link href=""><h2 className='text-blue-800 font-bold text-[16px]'>Small Group Tours</h2></Link>
