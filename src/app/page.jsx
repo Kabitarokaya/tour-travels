@@ -41,7 +41,7 @@ function page() {
 
         <div className="container mx-auto">
           <div>
-            <div className="flex gap-10 text-white justify-between">
+            <div className="flex lg:flex-nowrap flex-wrap gap-10 text-white justify-between">
               <div >
                 <h2 className='text-[36px] my-3 font-bold uppercase'>Ways to Travel</h2>
                 <p className='text-[16px] font-bold'>We offer you three authentic ways to travel with us: Classical Adventures, Real Adventures, or Luxury Adventures!</p>
